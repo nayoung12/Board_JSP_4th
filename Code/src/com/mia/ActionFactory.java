@@ -1,5 +1,7 @@
 package com.mia;
 
+import com.mia.action.BoardListAction;
+
 public class ActionFactory {
 
 	private static ActionFactory instance = new ActionFactory();
