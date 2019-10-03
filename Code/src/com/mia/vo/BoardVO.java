@@ -4,20 +4,20 @@ import java.sql.Date;
 
 public class BoardVO {
 	
-	private int number;
+	private int num;
 	private String title;
 	private String content;
 	private String writer;
 	private Date writeDate;
-	private int hit;
+	private int hits;
 	private int recommand;
 
-	public int getNumber() {
-		return number;
+	public int getNum() {
+		return num;
 	}
 	
-	public void setNumber(int number) {
-		this.number = number;
+	public void setNum(int num) {
+		this.num = num;
 	}
 	
 	public String getTitle() {
@@ -52,12 +52,12 @@ public class BoardVO {
 		this.writeDate = writeDate;
 	}
 	
-	public int getHit() {
-		return hit;
+	public int getHits() {
+		return hits;
 	}
 	
-	public void setHit(int hit) {
-		this.hit = hit;
+	public void setHits(int hits) {
+		this.hits = hits;
 	}
 	
 	public int getRecommand() {

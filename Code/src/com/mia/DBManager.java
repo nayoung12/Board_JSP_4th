@@ -3,6 +3,7 @@ package com.mia;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -18,7 +19,8 @@ public class DBManager {
 			
 			Context initContext = new InitialContext();
 			Context envContext = (Context)initContext.lookup("java:/comp/env");
-			DataSource ds = (DataSource)envContext.lookup("jdbc/myoracle");
+			//DataSource ds = (DataSource)envContext.lookup("jdbc/myoracle");
+			DataSource ds = (DataSource) envContext.lookup("java:comp/env/jdbc/oracle");
 			
 			conn = ds.getConnection();
 			
@@ -29,11 +31,11 @@ public class DBManager {
 		return conn;
 	} 
 	
-	public static void close(Connection conn, PreparedStatement pstmt, ResultSet rs) {
+	public static void close(Connection conn, Statement stmt, ResultSet rs) {
 		
 		try {
 			rs.close();
-			pstmt.close();
+			stmt.close();
 			conn.close();
 		}catch(Exception e) {
 			e.printStackTrace();
