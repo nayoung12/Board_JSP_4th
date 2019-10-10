@@ -1,6 +1,7 @@
 package com.mia.dao;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -11,10 +12,10 @@ import com.mia.vo.BoardVO;
 
 public class BoardDAO {
 	
-	private BoardDAO() {
+	public BoardDAO() {
 	}
 	
-	private static BoardDAO instance = new BoardDAO();
+	public static BoardDAO instance = new BoardDAO();
 	
 	public static BoardDAO getInstance() {
 		
@@ -23,16 +24,24 @@ public class BoardDAO {
 
 	public List<BoardVO> selectAllBoards(){
 		
-		String sql = "select * from board order by num desc";
+		String sql = "select * from article order by num desc";
 		
 		List<BoardVO> list = new ArrayList<BoardVO>();
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
 		
+		String driver="oracle.jdbc.driver.OracleDriver";
+		String url="jdbc:oracle:thin:@localhost:1521:orcl";
+		String id="mia";
+		String password="mia";
+		
 		try {
 			
-			conn = DBManager.getConnection();
+			Class.forName(driver);
+			conn=DriverManager.getConnection(url, id, password);
+			
+			//conn = DBManager.getConnection();
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			

@@ -18,7 +18,7 @@ public class BoardListAction implements Action{
 		
 		String url = "/board/boardList.jsp";
 		
-		BoardDAO dao = BoardDAO.getInstance();
+		BoardDAO dao = new BoardDAO();
 		
 		List<BoardVO> list = dao.selectAllBoards();
 		

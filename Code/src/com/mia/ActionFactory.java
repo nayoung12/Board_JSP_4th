@@ -4,9 +4,9 @@ import com.mia.action.BoardListAction;
 
 public class ActionFactory {
 
-	private static ActionFactory instance = new ActionFactory();
+	public static ActionFactory instance = new ActionFactory();
 	
-	private ActionFactory() {
+	public ActionFactory() {
 		super();
 	}
 	
