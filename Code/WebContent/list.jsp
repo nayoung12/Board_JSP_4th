@@ -22,7 +22,7 @@
 		<tr>
 			<td>${i.num}</td>		
 			<td>${i.writer}</td>
-			<td>${i.title}</td>
+			<td><a href="/BoardJSP_4th/read.do?num=${i.num}">${i.title}</a></td>
 			<td>${i.writeDate}</td>
 			<td>${i.hits}</td>	
 			<td>${i.recommand}</td>	
