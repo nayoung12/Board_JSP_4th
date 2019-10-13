@@ -1,5 +1,6 @@
 package com.mia;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.HashMap;
@@ -26,16 +27,15 @@ public class BbsServlet extends HttpServlet{
 
 		  // MvcProperty.properties 파일의 내용을 props에 저장시킨다
 	      String props = config.getInitParameter("dbConfig");
-
 	      Properties properties = new Properties();
+	      FileInputStream fileInputStream = null;
 
 	      try { 
-	    	  properties.load(new StringReader(props));
+	    	  fileInputStream = new FileInputStream(props);
+	          properties.load(fileInputStream);
 	      } catch(IOException ioe) {
 	            throw new ServletException(ioe);
 	      }
-	      
-	      System.out.println("mia : properties = " + properties);
 	      
 	      Iterator<?> keyIter = properties.keySet().iterator();
 
@@ -89,7 +89,7 @@ public class BbsServlet extends HttpServlet{
 
 	          // /xxxx.do에 해당하는 클래스, 즉 xxxxImpl 반환
 	          bbsInterface = (BbsInterface)commandMap.get(command);
-
+	          
 	          // handling()실행
 	          // 모든 클래스는 BbsInterface를 구현했기 때문에 업캐스팅해서 실행 가능하다(다형성)
 	          view = bbsInterface.handling(request, response);

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+  <display-name>BoardJSP_4th</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  	<!-- BbsCommand가 db.properties를 읽어서 요청된 주소에 맞는 작업 실행시킨다 -->
+    <!-- BbsCommand에서는 dbConfig 라는 이름으로 파일내용을 불러온다 --> 
+	<servlet>
+		<servlet-name>BbsServlet</servlet-name>
+		<servlet-class>com.mia.BbsServlet</servlet-class>
+		<init-param>
+			<param-name>dbConfig</param-name>
+			<param-value>
+	   			C:/Mia/Eclipse 2019-03/BoardJSP_4th/WebContent/db.properties
+	   		</param-value>
+		</init-param>
+	</servlet>
+	
+	<!-- 주소창에서 *.do라는 요청이 들어오면 BbsCommand로 연결시킨다 -->
+	<servlet-mapping>
+	<servlet-name>BbsServlet</servlet-name>
+	<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+</web-app>
