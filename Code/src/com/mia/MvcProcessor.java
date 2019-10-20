@@ -16,7 +16,9 @@ public class MvcProcessor {
 	private Connection connection;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
-	private List<BoardVO> allArticles;
+	private List<BoardVO> allArticles; // 굳이 전역 변수로 사용하면 좋은 이유가....?
+	
+	// 지역 변수로 여러번 선언하고 사라지는 것이 효율이 좋은가? 아니면 전역 변수로 한번 선언하고 계속 사용하는 것이 효율이 더 좋은가?
 	
 	public static MvcProcessor getInstance() {
 		return instance;
@@ -36,25 +38,6 @@ public class MvcProcessor {
 		System.out.println("오라클 DB 연결");
 		
 		return connection;
-	}
-
-	public int sampleTest() {
-		
-		int size=0;
-		
-		try {			
-			connection = this.getConnection();
-			pstmt=connection.prepareStatement("SELECT count(num) FROM ARTICLE");
-			rs=pstmt.executeQuery();
-
-			if(rs.next()) {
-				size = rs.getInt(1);
-			}
-		}catch(Exception e) {
-			
-		}
-		
-		return size;
 	}
 	
 	public List<BoardVO> getArticles() {
@@ -106,5 +89,56 @@ public class MvcProcessor {
 		}
 
 		return allArticles;
+	}
+	
+	public BoardVO getArticle(int num) {
+		
+		//BoardVO article = null; // 이 부분을 활용하면 article 부분에 null pointer access 발생해서 기능 제대
+		BoardVO article = new BoardVO();
+	
+		try {
+
+			connection = this.getConnection();
+			pstmt=connection.prepareStatement("SELECT * FROM ARTICLE WHERE NUM=?");
+			pstmt.setInt(1, num);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+			
+				article.setNum(rs.getInt("NUM"));
+				article.setTitle(rs.getString("TITLE"));
+				article.setContent(rs.getString("CONTENT"));
+				article.setWriter(rs.getString("WRITER"));
+				article.setWriteDate(rs.getDate("WRITEDATE"));
+				article.setHits(rs.getInt("HITS"));
+				article.setRecommand(rs.getInt("RECOMMAND"));
+			}
+
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+
+			if(rs != null) {
+				try {
+					rs.close();
+				} catch(Exception e) {}
+
+			}
+
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				} catch(Exception e) {}
+
+			}
+
+			if(connection != null) {
+				try {
+					connection.close();
+				} catch(Exception e) {}
+			}
+		}
+		
+		return article;
 	}
 }
