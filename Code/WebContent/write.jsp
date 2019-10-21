@@ -7,22 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form method="post" action="/write.do">
-<table border="2">
-	<tr>
-		<td>작성자</td>
-		<td><input type="text" name="writer" id="writer" /></td>
-	</tr>
-	<tr>
-		<td>제목</td>
-		<td><input type="text" name="title" id="title" /></td>
-	</tr>
-	<tr>
-		<td>내용</td>
-		<td><input type="text" name="content" id="content" /></td>
-	</tr>
-</table>
-<input type="submit" value="작성" />
-</form>
+
 </body>
 </html>
