@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<table border="2" align="center">
+<table border="2">
 	<tr align="center">
 		<td width="50">글번호</td>
 		<td width="100">글쓴이</td>
@@ -29,5 +29,7 @@
 		</tr>
 	</c:forEach>
 </table>
+<br/>
+<button onclick="location.href='write.jsp'">글쓰기</button>
 </body>
 </html>
