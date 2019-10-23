@@ -141,4 +141,18 @@ public class MvcProcessor {
 		
 		return article;
 	}
+	
+	public void writeArticle(String writer, String title, String content) {
+		
+		int result=0;
+		
+		try {			
+			connection = getConnection();
+			pstmt=connection.prepareStatement("INSERT ");
+			result=pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

@@ -24,5 +24,21 @@
 </table>
 <input type="submit" value="작성" />
 </form>
+<script>
+function doWrite() {
+
+	document.frm.submit();
+}
+
+function doWriteCancel() {
+
+	document.frm.reset();
+}
+
+function backToList() {
+
+	location.href="/MVC_BBS/list.do?pageNumber=${pageNumber}";
+}
+</script>
 </body>
 </html>
