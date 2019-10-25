@@ -30,6 +30,6 @@
 	</c:forEach>
 </table>
 <br/>
-<button onclick="location.href='write.jsp'">글쓰기</button>
+<button onclick="location.href='writeForm.jsp'">글쓰기</button>
 </body>
 </html>

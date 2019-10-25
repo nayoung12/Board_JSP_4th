@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form method="post" action="/write.do">
+<form method="post" action="/BoardJSP_4th/write.do">
 <table border="2">
 	<tr>
 		<td>작성자</td>
@@ -37,7 +37,7 @@ function doWriteCancel() {
 
 function backToList() {
 
-	location.href="/MVC_BBS/list.do?pageNumber=${pageNumber}";
+	location.href="/MVC_BBS/list.do";
 }
 </script>
 </body>

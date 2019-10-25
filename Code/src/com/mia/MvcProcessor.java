@@ -144,12 +144,15 @@ public class MvcProcessor {
 	
 	public void writeArticle(String writer, String title, String content) {
 		
-		int result=0;
-		
 		try {			
 			connection = getConnection();
-			pstmt=connection.prepareStatement("INSERT ");
-			result=pstmt.executeUpdate();
+			// ARTICLE_sequence.nextval
+			pstmt=connection.prepareStatement("INSERT INTO ARTICLE VALUES (?, ?, ?, ?, sysdate, 0, 0)");
+			pstmt.setInt(1, 10);
+			pstmt.setString(2, title);
+			pstmt.setString(3, writer);
+			pstmt.setString(4, content);
+			int result=pstmt.executeUpdate();
 			
 		}catch(Exception e) {
 			e.printStackTrace();

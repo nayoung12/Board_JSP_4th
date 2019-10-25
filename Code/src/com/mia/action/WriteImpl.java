@@ -17,7 +17,7 @@ public class WriteImpl implements BbsInterface{
 		String writer = request.getParameter("writer");
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
-		
+
 		BoardVO boardVo = new BoardVO();
 		boardVo.setWriter(writer);
 		boardVo.setTitle(title);
