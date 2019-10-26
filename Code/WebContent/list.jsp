@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h3><%= session.getAttribute("userId") %>님 안녕하세요.</h3>
 <table border="2">
 	<tr align="center">
 		<td width="50">글번호</td>
@@ -31,5 +32,6 @@
 </table>
 <br/>
 <button onclick="location.href='writeForm.jsp'">글쓰기</button>
+<button onclick="location.href='/BoardJSP_4th/logout.do'">로그아웃</button>
 </body>
 </html>

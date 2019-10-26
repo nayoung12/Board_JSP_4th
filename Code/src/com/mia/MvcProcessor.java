@@ -40,6 +40,56 @@ public class MvcProcessor {
 		return connection;
 	}
 	
+	public int login(String id, String password) {
+		
+		int result=0;
+		
+		try {			
+			connection=getConnection();
+			pstmt=connection.prepareStatement("SELECT * FROM USERS WHERE id=? and password=?");
+			pstmt.setString(1, id);
+			pstmt.setString(2, password);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next() == true) {
+				result = 1;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			if(connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return result;
+	}
+	
+	public void logout() {
+		 //session.invalidate();
+	}
+	
 	public List<BoardVO> getArticles() {
 
 		allArticles = new ArrayList<BoardVO>();
