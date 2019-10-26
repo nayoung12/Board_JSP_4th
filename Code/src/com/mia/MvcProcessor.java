@@ -90,6 +90,47 @@ public class MvcProcessor {
 		 //session.invalidate();
 	}
 	
+	public void signUp(String id, String password, String name) {
+
+		try {
+			
+			connection=getConnection();
+			pstmt=connection.prepareStatement("INSERT INTO USERS VALUES (?,?,?)");
+			pstmt.setString(1, id);
+			pstmt.setString(2, password);
+			pstmt.setString(3, name);
+			pstmt.executeQuery();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			
+			if(rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			if(connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
 	public List<BoardVO> getArticles() {
 
 		allArticles = new ArrayList<BoardVO>();
