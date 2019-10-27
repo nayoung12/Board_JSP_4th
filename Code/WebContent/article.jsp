@@ -37,6 +37,14 @@
 		<td width="80">추천수</td>
 		<td>${article.recommand}</td>
 	</tr>
+	<tr>
+		<td><!-- 수정 버튼 --></td>
+		<td><!-- 삭제 버튼 --></td>
+	</tr>
+	<tr>
+		<td><!-- 추천 버튼 --></td>
+		<td><!-- 추천 취소 버튼 --></td>
+	</tr>
 </table>
 </body>
 </html>

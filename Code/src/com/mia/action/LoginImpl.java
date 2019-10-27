@@ -23,7 +23,12 @@ public class LoginImpl implements BbsInterface{
 		if(result!=0) {
 			HttpSession session=request.getSession();
 			session.setAttribute("userId", id);
-			return "list.do";
+			
+			if(id.equals("admin")) {
+				return "list_admin.do";
+			}else {
+				return "list.do";
+			}		
 		}else {
 			return "main.jsp";
 		}

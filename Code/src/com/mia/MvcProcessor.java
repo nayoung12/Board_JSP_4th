@@ -196,6 +196,7 @@ public class MvcProcessor {
 			
 			while(rs.next()) {
 			
+				//updateHit(num);
 				article.setNum(rs.getInt("NUM"));
 				article.setTitle(rs.getString("TITLE"));
 				article.setContent(rs.getString("CONTENT"));
@@ -231,6 +232,43 @@ public class MvcProcessor {
 		}
 		
 		return article;
+	}
+	
+	public void updateHit(int num) {
+		
+		try {
+			connection=getConnection();
+			pstmt=connection.prepareStatement("UPDATE ");
+			pstmt.executeUpdate();			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+		
+			if(rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+
+					e.printStackTrace();
+				}
+			}
+			
+			if(connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 	
 	public void writeArticle(String writer, String title, String content) {

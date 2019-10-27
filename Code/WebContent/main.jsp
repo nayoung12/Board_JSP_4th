@@ -13,5 +13,6 @@
 	<input type="submit" value="로그인" />
 	<!-- 값 validation 체크 부분 삽입 필요 -->
 </form>
+<button onclick="location.href='signUp.jsp'">회원가입</button>
 </body>
 </html>
