@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.mia.vo.BoardVO;
+import com.mia.vo.UserVO;
 
 public class MvcProcessor {
 	
@@ -129,6 +130,57 @@ public class MvcProcessor {
 				}
 			}
 		}
+	}
+	
+	public List<UserVO> getUserList() {
+		
+		List<UserVO> usersList = new ArrayList<UserVO>();
+		
+		try {		
+			connection=getConnection();
+			
+			pstmt=connection.prepareStatement("SELECT * FROM USERS");
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+			
+				UserVO user = new UserVO();
+				user.setId(rs.getString("ID"));
+				user.setName(rs.getString("NAME"));
+				
+				usersList.add(user);
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			
+			if(rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			if(connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+			
+		return usersList;
 	}
 	
 	public List<BoardVO> getArticles() {
