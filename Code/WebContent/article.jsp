@@ -38,8 +38,10 @@
 		<td>${article.recommand}</td>
 	</tr>
 	<tr>
-		<td><!-- 수정 버튼 --></td>
-		<td><!-- 삭제 버튼 --></td>
+		<!-- 작성자만 수정버튼이 보이도록 -->
+		<td><button onclick="/BoardJSP_4th/modify_form.do">수정</button></td>
+		<!-- 작성자,관리자만 수정버튼이 보이도록 -->
+		<td><button onclick="">삭제</button></td>
 	</tr>
 	<tr>
 		<td><!-- 추천 버튼 --></td>

@@ -32,7 +32,7 @@
 </table>
 <br/>
 <button onclick="location.href='writeForm.jsp'">글쓰기</button>
-<button onclick="location.href=''">사용자 관리</button>
+<button onclick="location.href='/BoardJSP_4th/userslist_admin.do'">사용자 관리</button>
 <button onclick="location.href='/BoardJSP_4th/logout.do'">로그아웃</button>
 </body>
 </html>

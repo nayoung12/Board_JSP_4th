@@ -183,6 +183,40 @@ public class MvcProcessor {
 		return usersList;
 	}
 	
+	public void deleteUser(String id) {
+		
+		try {
+			connection = getConnection();
+			pstmt=connection.prepareStatement("DELETE FROM USERS WHERE ID=?");
+			pstmt.setString(1, id);
+			pstmt.executeUpdate();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+
+			if(rs != null) {
+				try {
+					rs.close();
+				} catch(Exception e) {}
+
+			}
+
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				} catch(Exception e) {}
+
+			}
+
+			if(connection != null) {
+				try {
+					connection.close();
+				} catch(Exception e) {}
+			}
+		}
+	}
+	
 	public List<BoardVO> getArticles() {
 
 		allArticles = new ArrayList<BoardVO>();
@@ -338,5 +372,13 @@ public class MvcProcessor {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void modifyArticle() {
+		
+	}
+	
+	public void deleteArticle() {
+		
 	}
 }
