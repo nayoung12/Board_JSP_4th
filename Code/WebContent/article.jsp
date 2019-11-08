@@ -39,13 +39,13 @@
 	</tr>
 	<tr>
 		<!-- 작성자만 수정버튼이 보이도록 -->
-		<td><button onclick="/BoardJSP_4th/modify_form.do">수정</button></td>
+		<td><button onclick="/BoardJSP_4th/modify_form.do?num=${article.num}">수정</button></td>
 		<!-- 작성자,관리자만 수정버튼이 보이도록 -->
-		<td><button onclick="">삭제</button></td>
+		<td><button onclick="/BoardJSP_4th/delete.do">삭제</button></td>
 	</tr>
 	<tr>
-		<td><!-- 추천 버튼 --></td>
-		<td><!-- 추천 취소 버튼 --></td>
+		<td><button onclick="/BoardJSP_4th/">추천</button></td>
+		<td><button onclick="/BoardJSP_4th/">추천취소</button></td>
 	</tr>
 </table>
 </body>

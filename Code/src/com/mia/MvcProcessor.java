@@ -376,9 +376,71 @@ public class MvcProcessor {
 	
 	public void modifyArticle() {
 		
+		try {
+			connection=getConnection();
+			pstmt=connection.prepareStatement("");
+			pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			
+			if(rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+			
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+			
+			if(connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+		}
 	}
 	
-	public void deleteArticle() {
-		
+	public void deleteArticle() {	
+
+		try {
+			connection=getConnection();
+			pstmt=connection.prepareStatement("");
+			pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			
+			if(rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+			
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+			
+			if(connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+		}
 	}
 }
