@@ -374,11 +374,14 @@ public class MvcProcessor {
 		}
 	}
 	
-	public void modifyArticle() {
+	public void modifyArticle(int num, String title, String content) {
 		
 		try {
 			connection=getConnection();
-			pstmt=connection.prepareStatement("");
+			pstmt=connection.prepareStatement("UPDATE FROM BOARD SET TITLE=?, CONTENT=? WHERE NUM=?");
+			pstmt.setString(1, title);
+			pstmt.setString(2, content);
+			pstmt.setInt(3, num);
 			pstmt.executeUpdate();
 			
 		}catch(Exception e) {
@@ -409,11 +412,12 @@ public class MvcProcessor {
 		}
 	}
 	
-	public void deleteArticle() {	
+	public void deleteArticle(int num) {	
 
 		try {
 			connection=getConnection();
-			pstmt=connection.prepareStatement("");
+			pstmt=connection.prepareStatement("DELETE * FROM BOARD WHERE NUM=?");
+			pstmt.setInt(1, num);
 			pstmt.executeUpdate();
 			
 		}catch(Exception e) {

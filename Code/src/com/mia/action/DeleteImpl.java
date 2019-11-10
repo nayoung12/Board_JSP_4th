@@ -9,6 +9,7 @@ public class DeleteImpl implements BbsInterface{
 
 	@Override
 	public String handling(HttpServletRequest request, HttpServletResponse response) {
-		return null;
+		
+		return "list.jsp";
 	}
 }
