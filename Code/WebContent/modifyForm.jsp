@@ -31,7 +31,9 @@
 		<td>${article.writeDate}</td>
 	</tr>
 </table>
+<br/>
 <input type="submit" value="수정" />
+<button onclick="/BoardJSP_4th/list.do">취소</button>
 </form>
 </body>
 </html>

@@ -412,6 +412,14 @@ public class MvcProcessor {
 		}
 	}
 	
+	public void addRecommand(int num) {
+		
+	}
+	
+	public void cancelRecommand(int num) {
+		
+	}
+	
 	public void deleteArticle(int num) {	
 
 		try {

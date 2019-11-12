@@ -39,9 +39,9 @@
 	</tr>
 	<tr>
 		<!-- 작성자만 수정버튼이 보이도록 -->
-		<td><button onclick="/BoardJSP_4th/modify_form.do?num=${article.num}">수정</button></td>
+		<td><button onclick="location.href='/BoardJSP_4th/modify_form.do?num=${article.num}'">수정</button></td>
 		<!-- 작성자,관리자만 수정버튼이 보이도록 -->
-		<td><button onclick="/BoardJSP_4th/delete.do">삭제</button></td>
+		<td><button onclick="location.href='/BoardJSP_4th/delete.do?num=${article.num}'">삭제</button></td>
 	</tr>
 	<tr>
 		<td><button onclick="/BoardJSP_4th/">추천</button></td>
