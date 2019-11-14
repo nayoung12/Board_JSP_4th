@@ -414,17 +414,85 @@ public class MvcProcessor {
 	
 	public void addRecommand(int num) {
 		
+		try {	
+			connection=getConnection();
+			pstmt=connection.prepareStatement("UPDATE FROM BOARD SET RECOMMAND=? WHERE NUM=?");
+			pstmt.setInt(2, num);
+			pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+		
+			if(rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			if(connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 	
 	public void cancelRecommand(int num) {
 		
+		try {
+			connection=getConnection();
+			pstmt=connection.prepareStatement("UPDATE FROM BOARD SET RECOMMAND=? WHERE NUM=?");
+			pstmt.setInt(2, num);
+			pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			
+			if(rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			if(connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 	
 	public void deleteArticle(int num) {	
 
 		try {
 			connection=getConnection();
-			pstmt=connection.prepareStatement("DELETE * FROM BOARD WHERE NUM=?");
+			pstmt=connection.prepareStatement("DELETE FROM BOARD WHERE NUM=?");
 			pstmt.setInt(1, num);
 			pstmt.executeUpdate();
 			
