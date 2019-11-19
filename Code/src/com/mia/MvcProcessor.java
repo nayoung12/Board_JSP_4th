@@ -324,7 +324,9 @@ public class MvcProcessor {
 		
 		try {
 			connection=getConnection();
-			pstmt=connection.prepareStatement("UPDATE ");
+			pstmt=connection.prepareStatement("UPDATE FROM BOARD SET hits=? WHERE num=?");
+			pstmt.setInt(1, );
+			pstmt.setInt(2, num);
 			pstmt.executeUpdate();			
 		}catch(Exception e) {
 			e.printStackTrace();
