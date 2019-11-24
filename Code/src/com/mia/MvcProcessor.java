@@ -20,6 +20,7 @@ public class MvcProcessor {
 	private List<BoardVO> allArticles; // 굳이 전역 변수로 사용하면 좋은 이유가....?
 	
 	// 지역 변수로 여러번 선언하고 사라지는 것이 효율이 좋은가? 아니면 전역 변수로 한번 선언하고 계속 사용하는 것이 효율이 더 좋은가?
+	// DB 쿼리 select문 할 때 *로 전부 다 가져오는 거랑 필요한 요소만 들고오는거랑 시간 차이가 많이 나는가? 
 	
 	public static MvcProcessor getInstance() {
 		return instance;
@@ -41,6 +42,33 @@ public class MvcProcessor {
 		return connection;
 	}
 	
+	public void closeConnection() {
+	
+		if(rs!=null) {
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if(pstmt != null) {
+			try {
+				pstmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if(connection != null) {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	public int login(String id, String password) {
 		
 		int result=0;
@@ -57,31 +85,8 @@ public class MvcProcessor {
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
-		}finally {
-			
-			if(rs!=null) {
-				try {
-					rs.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			
-			if(pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			
-			if(connection != null) {
-				try {
-					connection.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+		}finally {			
+			closeConnection();
 		}
 		
 		return result;
@@ -325,7 +330,7 @@ public class MvcProcessor {
 		try {
 			connection=getConnection();
 			pstmt=connection.prepareStatement("UPDATE FROM BOARD SET hits=? WHERE num=?");
-			pstmt.setInt(1, );
+			pstmt.setInt(1, getCurrentHits(num)+1);
 			pstmt.setInt(2, num);
 			pstmt.executeUpdate();			
 		}catch(Exception e) {
@@ -357,6 +362,49 @@ public class MvcProcessor {
 				}
 			}
 		}
+	}
+	
+	public int getCurrentHits(int num) {
+		
+		int hit=0;		
+		try {
+			
+			pstmt=connection.prepareStatement("SELECT * FROM BOARD WHERE NUM=?");
+			pstmt.setInt(1, num);
+			rs=pstmt.executeQuery();
+			
+			hit=rs.getInt("hits");
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			
+			if(rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {					
+					e.printStackTrace();
+				}
+			}
+			
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {					
+					e.printStackTrace();
+				}
+			}
+			
+			if(connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {					
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return hit;
 	}
 	
 	public void writeArticle(String writer, String title, String content) {
@@ -419,6 +467,7 @@ public class MvcProcessor {
 		try {	
 			connection=getConnection();
 			pstmt=connection.prepareStatement("UPDATE FROM BOARD SET RECOMMAND=? WHERE NUM=?");
+			pstmt.setInt(1, getCurrentRecommands(num)+1);
 			pstmt.setInt(2, num);
 			pstmt.executeUpdate();
 			
@@ -457,13 +506,13 @@ public class MvcProcessor {
 		try {
 			connection=getConnection();
 			pstmt=connection.prepareStatement("UPDATE FROM BOARD SET RECOMMAND=? WHERE NUM=?");
+			pstmt.setInt(1, getCurrentRecommands(num)-1);
 			pstmt.setInt(2, num);
 			pstmt.executeUpdate();
 			
 		}catch(Exception e) {
 			e.printStackTrace();
-		}finally {
-			
+		}finally {		
 			if(rs != null) {
 				try {
 					rs.close();
@@ -488,6 +537,49 @@ public class MvcProcessor {
 				}
 			}
 		}
+	}
+	
+	public int getCurrentRecommands(int num) {
+		
+		int recommand=0;
+		
+		try {
+			
+			pstmt=connection.prepareStatement("SELECT RECOMMAND FROM BOARD WHERE NUM=?");
+			pstmt.setInt(1, num);
+			rs=pstmt.executeQuery();
+			
+			recommand=rs.getInt("RECOMMAND");
+			
+		}catch(Exception e) {
+			
+		}finally {	
+			if(rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			if(connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return recommand;
 	}
 	
 	public void deleteArticle(int num) {	
