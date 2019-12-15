@@ -42,6 +42,22 @@ public class MvcProcessor {
 		return connection;
 	}
 	
+	private Connection getMySqlArticleConnection() throws ClassNotFoundException, SQLException{
+		
+		String driverName="com.mysql.cj.jdbc.Driver";
+		final String mySqlDbUrl = "jdbc:mysql://127.0.0.1:3306/board?characterEncoding=UTF-8&serverTimezone=UTC";
+		final String mySqlDbID = "root";
+		final String mySqlDbPassword = "root";
+		
+		Connection connection = null;
+		Class.forName(driverName);
+		connection = DriverManager.getConnection(mySqlDbUrl, mySqlDbID, mySqlDbPassword);
+		
+		System.out.println("MySQL DB 연결");
+		
+		return connection;
+	}
+	
 	public void closeConnection() {
 	
 		if(rs!=null) {
